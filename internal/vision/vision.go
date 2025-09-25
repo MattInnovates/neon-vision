@@ -82,3 +82,8 @@ func (c *Camera) GetZoomPosition() (int, error) {
 	pos := (int(resp[2]) << 12) | (int(resp[3]) << 8) | (int(resp[4]) << 4) | int(resp[5])
 	return pos, nil
 }
+
+// SendCustom sends any raw VISCA command and waits for reply.
+func (c *Camera) SendCustom(cmd []byte) ([]byte, error) {
+	return c.sendAndWait(cmd)
+}
